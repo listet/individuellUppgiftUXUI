@@ -1,0 +1,19 @@
+.frontPage-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.frontPage-text {
+    color: white;
+    font-family: "PT Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0.6rem;
+    letter-spacing: 0.2rem;
+}
