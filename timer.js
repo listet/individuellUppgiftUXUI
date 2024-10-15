@@ -1,8 +1,14 @@
 import { create } from 'zustand';
 
 const timerStore = create((set, get) => ({
-    time: 60, // Startvärde för timern (sekunder)
+    time: 10, // Startvärde för timern 
     isRunning: false, // För att hålla koll på om timern körs
+    intervalId: null,
+
+    //Sätt tid
+    setTime: (newTime) => {
+        set({ time: newTime });
+    },
 
     // Starta timern
     startTimer: () => {
