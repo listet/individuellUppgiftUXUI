@@ -1,0 +1,33 @@
+.alarmPage-wrapper {
+    background-color: rgba(34, 34, 34, 1);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.alarmIcon-container {
+    text-align: center;
+    margin-top: 10rem;
+}
+
+.alarmPage-text {
+    color: white;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+}
+
+.newTimer-button {
+    font-family: "PT Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(34, 34, 34, 1);
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    cursor: pointer;
+}

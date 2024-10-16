@@ -14,9 +14,24 @@
     height: 100vh;
     width: 100vw;
     z-index: 99;
-    background-color: black;
+    background-color: hsla(0, 0%, 0%, 0.8);
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: white;
+    font-family: "PT Sans", sans-serif;
+    width: 100vw;
+    text-align: center;
+    padding: 1rem;
+}
+
+.nav-item:hover,
+.nav-item-active {
+    background-color: hsla(0, 0%, 59%, 0.294);
 }
