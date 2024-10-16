@@ -40,11 +40,11 @@ const timerStore = create((set, get) => ({
         }
     },
 
-    // Pausa timern
-    stopTimer: () => {
-        set({ isRunning: false });
-        get().timerInstance.pause();
-    },
+    // // Pausa timern
+    // stopTimer: () => {
+    //     set({ isRunning: false });
+    //     get().timerInstance.pause();
+    // },
 
     // Nollställ timern
     resetTimer: (newTime) => {
