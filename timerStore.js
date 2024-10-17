@@ -10,11 +10,15 @@ const timerStore = create((set, get) => ({
     //Sätt tid
     setTime: (newTime) => {
         set({ time: newTime });
-        // get().timerInstance.start({ countdown: true, startValues: { minutes: newTime } });
     },
 
     setNavigate: (navigateFunc) => {
         set({ navigate: navigateFunc });
+    },
+
+    getTotalTimeInSeconds: () => {
+        const timeValues = get().timerInstance.getTimeValues();
+        return timeValues.minutes * 60 + timeValues.seconds;
     },
 
     // Starta timern

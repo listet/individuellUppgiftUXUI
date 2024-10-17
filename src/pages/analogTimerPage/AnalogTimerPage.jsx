@@ -4,20 +4,24 @@ import timerStore from "../../../timerStore";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion'
 
-function AnalogTimerPage() {
+// useTime och useTransform går att använda för det
 
+function AnalogTimerPage() {
     const time = timerStore((state) => state.time);
-    // const isRunning = timerStore((state) => state.isRunning);
-    const seconds = time % 60; // Få sekunder från tiden
-    const minutes = Math.floor(time / 60) % 60; // Få minuter från tiden
-    const secondDegrees = (seconds / 60) * 360;
-    const minuteDegrees = (minutes / 60) * 360;
+    const totalSeconds = timerStore((state) => state.getTotalTimeInSeconds());
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+
+    // Beräkna rotationen i grader
+    const secondDegrees = 360 - (remainingSeconds / 60) * 360; // Invertera för medurs rörelse
+    const minuteDegrees = 360 - (totalSeconds / (time * 60)) * 360; // Roterar ett varv under total tid
+
 
     const resetTimer = timerStore((state) => state.resetTimer);
-    // KOlla upp tween 
     const abortTimer = () => {
         resetTimer(0); // Nollställ timern till 0
     };
+    // KOlla upp tween 
 
     return (
         <section className="analogTimerPage-wrapper">
@@ -25,13 +29,30 @@ function AnalogTimerPage() {
             <section className="stopwatch-container">
                 <motion.figure
                     className="second"
-                    animate={{ rotate: secondDegrees }}
-                    transition={{ ease: 'linear', duration: 1 }}
+                    initial={{
+                        rotate: "0deg",
+                    }}
+                    animate={{
+                        rotate: "360deg",
+                    }}
+                    transition={{
+                        ease: 'linear',
+                        duration: 60,
+                        repeat: Infinity
+                    }}
                 />
                 <motion.figure
                     className="minute"
-                    animate={{ rotate: minuteDegrees }}
-                    transition={{ type: 'tween', ease: 'linear', duration: 60 }}
+                    initial={{
+                        rotate: "0deg",
+                    }}
+                    animate={{
+                        rotate: "360deg",
+                    }}
+                    transition={{
+                        ease: 'linear',
+                        duration: time * 60,
+                    }}
                 />
                 <figure className="centercircle"></figure>
             </section>
