@@ -13,9 +13,3 @@ function FrontPage() {
 }
 
 export default FrontPage
-
-//  { <motion.h2
-//         className='header'
-//         initial={{
-//             color: 'blue',
-//         }}>hejsan</motion.h2> }

@@ -12,6 +12,10 @@
     height: 15rem;
     width: 15rem;
     border-radius: 100%;
+    background-image: url('../../assets/minutes.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: rgba(238, 238, 238, 1);
     display: flex;
     justify-content: center;
@@ -20,7 +24,7 @@
     overflow: hidden;
 }
 
-.stopwatch-container::before {
+/* .stopwatch-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -28,16 +32,10 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(rgba(34, 34, 34, 1) 0deg,
-            transparent 1deg 5deg,
-            rgba(34, 34, 34, 1) 6deg,
-            transparent 7deg 11deg,
-            rgba(34, 34, 34, 1) 12deg,
-            transparent 13deg 17deg);
-    mask-image: radial-gradient(circle, transparent 60%, rgba(34, 34, 34, 1) 46%);
-
-    /* Gör att strecken bara visas på klockans kant */
-}
+    background: repeating-conic-gradient(rgba(34, 34, 34, 1) 0deg 1deg,
+            transparent 1deg 6deg);
+    mask-image: radial-gradient(circle, transparent 60%, black 20%);
+} */
 
 .centercircle {
     height: 15px;
@@ -74,5 +72,12 @@
 }
 
 .abort-button {
-    color: black;
+    font-family: "PT Sans", sans-serif;
+    color: rgba(34, 34, 34, 0.6);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    padding: 0.7rem;
+    border: 1px solid rgba(34, 34, 34, 0.6);
+    border-radius: 5px;
 }
