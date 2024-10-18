@@ -3,13 +3,26 @@ import Timer from 'easytimer.js';
 
 const timerStore = create((set, get) => ({
     time: 10, // Startvärde för timern 
+    initialTime: 10 * 60,
     isRunning: false,
     timerInstance: new Timer(),
     navigate: null,
+    secondDegrees: 0,
+    minuteDegrees: 0,
+    setSecondDegrees: (newsecondDegrees) => {
+        set({ secondDegrees: newsecondDegrees })
+    },
+    setMinuteDegrees: (newMinuteDegrees) => {
+        set({ minuteDegrees: newMinuteDegrees })
+    },
 
     //Sätt tid
     setTime: (newTime) => {
         set({ time: newTime });
+    },
+
+    setInitialTime: (newInitialTime) => {
+        set({ initialTime: newInitialTime * 60 }); // Uppdatera initialTime när timern startas
     },
 
     setNavigate: (navigateFunc) => {
@@ -28,6 +41,7 @@ const timerStore = create((set, get) => ({
 
         if (!get().isRunning) {
             set({ isRunning: true });
+            set({ initialTime: selectedTime * 60 });
             timer.start({ countdown: true, startValues: { minutes: Math.floor(selectedTime) } });
             timer.addEventListener('secondsUpdated', () => {
                 const timeValues = timer.getTimeValues();

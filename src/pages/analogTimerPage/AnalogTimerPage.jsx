@@ -2,58 +2,61 @@ import Nav from "../../components/nav/Nav"
 import './analogTimerPage.css'
 import timerStore from "../../../timerStore";
 import { Link } from "react-router-dom";
-import { motion } from 'framer-motion'
-
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useEffect } from "react";
 // useTime och useTransform går att använda för det
 
 function AnalogTimerPage() {
+
     const time = timerStore((state) => state.time);
     const totalSeconds = timerStore((state) => state.getTotalTimeInSeconds());
-    const totalMinutes = Math.floor(totalSeconds / 60);
-    const remainingSeconds = totalSeconds % 60;
+    const isRunning = timerStore((state) => state.isRunning);
+    const initialTime = timerStore((state) => state.initialTime);
+    // Använd motion value för att hålla koll på visarnas grader
+    const secondDegrees = useMotionValue(0);
+    const minuteDegrees = useMotionValue(0);
 
-    // Beräkna rotationen i grader
-    const secondDegrees = 360 - (remainingSeconds / 60) * 360; // Invertera för medurs rörelse
-    const minuteDegrees = 360 - (totalSeconds / (time * 60)) * 360; // Roterar ett varv under total tid
+    useEffect(() => {
+        if (isRunning) {
+            const remainingSeconds = totalSeconds % 60;
+            const totalElapsedSeconds = totalSeconds;
+            console.log("Total Seconds: ", totalElapsedSeconds, "Total Timer Seconds: ", time);
 
+            secondDegrees.set(360 - (remainingSeconds / 60) * 360);
+            minuteDegrees.set(360 - (totalElapsedSeconds / initialTime) * 360);
+        }
+    }, [totalSeconds, isRunning, secondDegrees, minuteDegrees, time]);
 
     const resetTimer = timerStore((state) => state.resetTimer);
     const abortTimer = () => {
-        resetTimer(0); // Nollställ timern till 0
+        resetTimer(10); // Nollställ timern 
     };
-    // KOlla upp tween 
 
     return (
         <section className="analogTimerPage-wrapper">
             <Nav />
             <section className="stopwatch-container">
-                <motion.figure
-                    className="second"
-                    initial={{
-                        rotate: "0deg",
-                    }}
-                    animate={{
-                        rotate: "360deg",
-                    }}
-                    transition={{
-                        ease: 'linear',
-                        duration: 60,
-                        repeat: Infinity
-                    }}
-                />
-                <motion.figure
-                    className="minute"
-                    initial={{
-                        rotate: "0deg",
-                    }}
-                    animate={{
-                        rotate: "360deg",
-                    }}
-                    transition={{
-                        ease: 'linear',
-                        duration: time * 60,
-                    }}
-                />
+                {isRunning && (
+                    <>
+                        <motion.figure
+                            className="second"
+                            style={{ rotate: secondDegrees }}
+                            transition={{
+                                ease: 'linear',
+                                duration: 1, // Justera för att styra hastigheten på sekunder
+                                repeat: Infinity,
+                            }}
+                        />
+                        <motion.figure
+                            className="minute"
+                            style={{ rotate: minuteDegrees }}
+                            transition={{
+                                ease: 'linear',
+                                duration: totalSeconds * 60, // Total tid för minutvisaren
+                            }}
+                        />
+                    </>
+                )}
                 <figure className="centercircle"></figure>
             </section>
             <Link
