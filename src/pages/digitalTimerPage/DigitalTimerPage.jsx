@@ -1,15 +1,20 @@
 import Nav from '../../components/nav/Nav'
 import timerStore from '../../../timerStore';
 import { Link } from 'react-router-dom';
+import './digitalTimerPage.css'
 
 function DigitalTimerPage() {
     const time = timerStore((state) => state.time);
     const isRunning = timerStore((state) => state.isRunning);
 
+    const resetTimer = timerStore((state) => state.resetTimer);
+    const abortTimer = () => {
+        resetTimer(10); // Nollställ timern 
+    };
+
     return (
         <section className="analogTimerPage-wrapper">
             <Nav />
-            <h1>Digital timer Page</h1>
             {/* Gömmer timerdisplayen tills timern startas */}
             {isRunning && (
                 <section className="timerDisplay">
@@ -18,10 +23,9 @@ function DigitalTimerPage() {
             )}
             <Link
                 aria-label='Navigate to set timer'
-                className='abort-button'
-                to="/TimerPage">
-                {/* Något rom resetar Timer */}
-                <button>ABORT TIMER</button>
+                to="/TimerPage"
+                onClick={abortTimer}>
+                <button className='abort-button'>ABORT TIMER</button>
             </Link>
         </section>
     )

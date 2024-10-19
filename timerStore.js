@@ -65,9 +65,9 @@ const timerStore = create((set, get) => ({
     // },
 
     // Nollställ timern
-    resetTimer: (newTime) => {
+    resetTimer: () => {
         get().timerInstance.stop();
-        set({ time: newTime, isRunning: false });
+        set({ time: 10, isRunning: false });
     },
 }));
 

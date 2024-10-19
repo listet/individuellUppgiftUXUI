@@ -24,19 +24,6 @@
     overflow: hidden;
 }
 
-/* .stopwatch-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: repeating-conic-gradient(rgba(34, 34, 34, 1) 0deg 1deg,
-            transparent 1deg 6deg);
-    mask-image: radial-gradient(circle, transparent 60%, black 20%);
-} */
-
 .centercircle {
     height: 15px;
     width: 15px;
@@ -80,4 +67,5 @@
     padding: 0.7rem;
     border: 1px solid rgba(34, 34, 34, 0.6);
     border-radius: 5px;
+    cursor: pointer;
 }

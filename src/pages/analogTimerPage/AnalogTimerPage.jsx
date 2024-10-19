@@ -2,7 +2,7 @@ import Nav from "../../components/nav/Nav"
 import './analogTimerPage.css'
 import timerStore from "../../../timerStore";
 import { Link } from "react-router-dom";
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 import { useEffect } from "react";
 // useTime och useTransform går att använda för det
 
@@ -20,7 +20,6 @@ function AnalogTimerPage() {
         if (isRunning) {
             const remainingSeconds = totalSeconds % 60;
             const totalElapsedSeconds = totalSeconds;
-            console.log("Total Seconds: ", totalElapsedSeconds, "Total Timer Seconds: ", time);
 
             secondDegrees.set(360 - (remainingSeconds / 60) * 360);
             minuteDegrees.set(360 - (totalElapsedSeconds / initialTime) * 360);
@@ -52,7 +51,7 @@ function AnalogTimerPage() {
                             style={{ rotate: minuteDegrees }}
                             transition={{
                                 ease: 'linear',
-                                duration: totalSeconds * 60, // Total tid för minutvisaren
+                                duration: 0.1, // Total tid för minutvisaren
                             }}
                         />
                     </>
