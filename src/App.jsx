@@ -19,6 +19,7 @@ function App() {
         <Route path="/TextTimerPage" element={<TextTimerPage />} />
         <Route path="/AlarmViewPage" element={<AlarmViewPage />} />
       </Routes>
+
     </>
   )
 }

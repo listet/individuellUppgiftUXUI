@@ -1,7 +1,6 @@
 import logo from '../../assets/logo.svg'
 import './frontPage.css'
 import { Link } from 'react-router-dom'
-// import { motion } from 'framer-motion';
 
 function FrontPage() {
     return (
