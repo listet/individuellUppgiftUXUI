@@ -14,6 +14,11 @@ function TimerPage() {
     const startTimer = timerStore((state) => state.startTimer);
     const navigate = useNavigate();
     const setNavigate = timerStore((state) => state.setNavigate);
+    const intervalsEnabled = timerStore((state) => state.intervalsEnabled);
+    const setIntervalsEnabled = timerStore((state) => state.setIntervalsEnabled);
+    const breakEnabled = timerStore((state) => state.breakEnabled);
+    const setBreakEnabled = timerStore((state) => state.setBreakEnabled);
+
 
     useEffect(() => {
         setNavigate(navigate);
@@ -29,6 +34,14 @@ function TimerPage() {
         if (time < 60) {
             setTime(time + 1);
         }
+    };
+
+    const handleIntervalChange = (e) => {
+        setIntervalsEnabled(e.target.checked); // Aktivera/inaktivera intervall
+    };
+
+    const handleBreakChange = (e) => {
+        setBreakEnabled(e.target.checked); // Aktivera/inaktivera break
     };
 
     return (
@@ -50,11 +63,25 @@ function TimerPage() {
             </section>
             <section className='startTimer-container'>
                 <article className='checkbox-container'>
-                    <input className='intervals-box' type="checkbox" name="intervals" id="intervals" />
+                    <input
+                        className='intervals-box'
+                        type="checkbox"
+                        name="intervals"
+                        id="intervals"
+                        checked={intervalsEnabled}
+                        onChange={handleIntervalChange}
+                    />
                     <p className='inline-text'>Intervals</p>
                 </article>
                 <article className='checkbox-container'>
-                    <input className='intervals-box' type="checkbox" name="break" id="break" />
+                    <input
+                        className='intervals-box'
+                        type="checkbox"
+                        name="break"
+                        id="break"
+                        checked={breakEnabled}
+                        onChange={handleBreakChange}
+                    />
                     <p className='inline-text'>5 min break / interval</p>
                 </article>
                 <Link

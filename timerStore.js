@@ -9,6 +9,8 @@ const timerStore = create((set, get) => ({
     navigate: null,
     secondDegrees: 0,
     minuteDegrees: 0,
+    intervalsEnabled: false,
+    breakEnabled: false,
     setSecondDegrees: (newsecondDegrees) => {
         set({ secondDegrees: newsecondDegrees })
     },
@@ -22,11 +24,19 @@ const timerStore = create((set, get) => ({
     },
 
     setInitialTime: (newInitialTime) => {
-        set({ initialTime: newInitialTime * 60 }); // Uppdatera initialTime när timern startas
+        set({ initialTime: newInitialTime * 60 });
     },
 
     setNavigate: (navigateFunc) => {
         set({ navigate: navigateFunc });
+    },
+
+    setIntervalsEnabled: (enabled) => {
+        set({ intervalsEnabled: enabled });
+    },
+
+    setBreakEnabled: (enabled) => {
+        set({ breakEnabled: enabled });
     },
 
     getTotalTimeInSeconds: () => {
@@ -47,22 +57,24 @@ const timerStore = create((set, get) => ({
                 const timeValues = timer.getTimeValues();
                 set({ time: timeValues.minutes + timeValues.seconds / 60 });
             });
+
             timer.addEventListener('targetAchieved', () => {
                 set({ isRunning: false });
                 console.log('Tiden är slut!');
+
                 const navigate = get().navigate;
                 if (navigate) {
                     navigate('/AlarmViewPage');
                 }
+                setTimeout(() => {
+                    console.log('Återgår till timern efter 3 sekunder.');
+                    set({ time: get().initialTime / 60 });
+                    get().startTimer();
+                    navigate('/AnalogTimerPage');
+                }, 3000);
             });
         }
     },
-
-    // // Pausa timern
-    // stopTimer: () => {
-    //     set({ isRunning: false });
-    //     get().timerInstance.pause();
-    // },
 
     // Nollställ timern
     resetTimer: () => {
