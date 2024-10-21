@@ -64,14 +64,26 @@ const timerStore = create((set, get) => ({
 
                 const navigate = get().navigate;
                 if (navigate) {
-                    navigate('/AlarmViewPage');
+                    if (!get().breakEnabled && !get().intervalsEnabled) {
+                        navigate('/AlarmViewPage');
+                    }
+                    if (get().breakEnabled) {
+                        setTimeout(() => {
+                            console.log('Återgår till timern efter 5 minuter.');
+                            set({ time: get().initialTime / 60 });
+                            get().startTimer();
+                            navigate('/AnalogTimerPage');
+                        }, 300000);
+                    }
+                    if (get().intervalsEnabled) {
+                        setTimeout(() => {
+                            console.log('Återgår till timern efter 3 sekunder.');
+                            set({ time: get().initialTime / 60 });
+                            get().startTimer();
+                            navigate('/AnalogTimerPage');
+                        }, 3000);
+                    }
                 }
-                setTimeout(() => {
-                    console.log('Återgår till timern efter 3 sekunder.');
-                    set({ time: get().initialTime / 60 });
-                    get().startTimer();
-                    navigate('/AnalogTimerPage');
-                }, 3000);
             });
         }
     },
