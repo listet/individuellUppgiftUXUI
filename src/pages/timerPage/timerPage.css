@@ -33,6 +33,23 @@
     color: rgba(0, 0, 0, 0.4);
 }
 
+.startTimer-container {}
+
+.checkbox-container {
+    display: flex;
+    margin: 2rem 1rem;
+}
+
+.intervals-box {
+    margin-right: 1rem;
+    width: 1.5rem;
+}
+
+.inline-text {
+    font-family: "PT Sans", sans-serif;
+    font-size: 1.2rem;
+}
+
 .startTimer-button {
     font-family: "PT Sans", sans-serif;
     font-weight: 700;

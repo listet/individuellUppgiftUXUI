@@ -12,7 +12,7 @@ function TimerPage() {
     const time = timerStore((state) => state.time);
     const setTime = timerStore((state) => state.setTime);
     const startTimer = timerStore((state) => state.startTimer);
-    const navigate = useNavigate(); // Hämta navigeringsfunktion
+    const navigate = useNavigate();
     const setNavigate = timerStore((state) => state.setNavigate);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function TimerPage() {
     }, [navigate, setNavigate]);
 
     const handleDecrease = () => {
-        if (time > 1) { // Sätter en mingräns för minuter
+        if (time > 1) {
             setTime(time - 1);
         }
     };
@@ -48,9 +48,15 @@ function TimerPage() {
                     className='decrement'
                     onClick={handleIncrease} />
             </section>
-            <section>
-                <p>box</p>
-                <p>box</p>
+            <section className='startTimer-container'>
+                <article className='checkbox-container'>
+                    <input className='intervals-box' type="checkbox" name="intervals" id="intervals" />
+                    <p className='inline-text'>Intervals</p>
+                </article>
+                <article className='checkbox-container'>
+                    <input className='intervals-box' type="checkbox" name="break" id="break" />
+                    <p className='inline-text'>5 min break / interval</p>
+                </article>
                 <Link
                     aria-label='Navigate to countdown'
                     to="/AnalogTimerPage">
