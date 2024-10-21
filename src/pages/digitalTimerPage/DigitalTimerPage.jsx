@@ -3,6 +3,7 @@ import timerStore from '../../../timerStore';
 import { Link } from 'react-router-dom';
 import './digitalTimerPage.css'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react';
 
 function DigitalTimerPage() {
     const time = timerStore((state) => state.time);
@@ -12,6 +13,18 @@ function DigitalTimerPage() {
     const abortTimer = () => {
         resetTimer(10); // Nollställ timern 
     };
+
+    useEffect(() => {
+        let timerInterval;
+
+        if (isRunning) {
+            timerInterval = setInterval(() => {
+                timerStore.getState().setTime(time - 1);
+            }, 1000);
+        }
+
+        return () => clearInterval(timerInterval);
+    }, [isRunning, time]);
 
     return (
         <section className="analogTimerPage-wrapper">

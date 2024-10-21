@@ -29,10 +29,21 @@ function Nav() {
                 {isNavOpen && (
                     <motion.nav
                         className='nav-menu'
-                        initial={{ opacity: 0, x: -200 }} // Start off screen
-                        animate={{ opacity: 1, x: 0 }} // Slide in
-                        exit={{ opacity: 0, x: -200 }} // Slide out
-                        transition={{ duration: 0.5 }}
+                        initial={{
+                            opacity: 0,
+                            x: -200
+                        }}
+                        animate={{
+                            opacity: 1,
+                            x: 0
+                        }}
+                        exit={{
+                            opacity: 0,
+                            x: -200
+                        }}
+                        transition={{
+                            duration: 0.5
+                        }}
                     >
                         <Link
                             aria-label='Navigate to analog timer'
