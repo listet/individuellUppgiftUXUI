@@ -2,6 +2,7 @@ import Nav from '../../components/nav/Nav'
 import timerStore from '../../../timerStore';
 import { Link } from 'react-router-dom';
 import './digitalTimerPage.css'
+import { motion } from 'framer-motion'
 
 function DigitalTimerPage() {
     const time = timerStore((state) => state.time);
@@ -25,7 +26,12 @@ function DigitalTimerPage() {
                 aria-label='Navigate to set timer'
                 to="/TimerPage"
                 onClick={abortTimer}>
-                <button className='abort-button'>ABORT TIMER</button>
+                <motion.button
+                    className='abort-button'
+                    whileHover={{ backgroundColor: '#22222240' }}
+                    whileTap={{ scale: 0.95 }}
+                >ABORT TIMER
+                </motion.button>
             </Link>
         </section>
     )

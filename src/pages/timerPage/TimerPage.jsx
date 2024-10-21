@@ -5,6 +5,7 @@ import Nav from '../../components/nav/Nav'
 import timerStore from '../../../timerStore'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 function TimerPage() {
 
@@ -53,10 +54,15 @@ function TimerPage() {
                 <Link
                     aria-label='Navigate to countdown'
                     to="/AnalogTimerPage">
-                    <button
+                    <motion.button
                         className='startTimer-button'
                         onClick={startTimer}
-                    > START TIMER</button>
+                        whileHover={{ backgroundColor: '#22222240' }}
+                        whileTap={{ scale: 0.95 }}
+                    // transition={{ duration: 0.2 }}
+                    >
+                        START TIMER
+                    </motion.button>
                 </Link>
             </section>
         </section>
