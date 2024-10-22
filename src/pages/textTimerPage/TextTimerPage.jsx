@@ -1,20 +1,14 @@
 import Nav from '../../components/nav/Nav'
 import timerStore from '../../../timerStore';
-import { Link } from 'react-router-dom';
 import './textTimerPage.css'
-import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react';
 import PauseView from '../../components/pauseView/PauseView';
+import AbortButton from '../../components/abortButton/AbortButton';
 
 function TextTimerPage() {
     const time = timerStore((state) => state.time);
     const isRunning = timerStore((state) => state.isRunning);
     const [formattedTime, setFormattedTime] = useState('');
-
-    const resetTimer = timerStore((state) => state.resetTimer);
-    const abortTimer = () => {
-        resetTimer(10); // Nollställ timern 
-    };
 
     const numberToText = (number) => {
         const numbersInSwedish = [
@@ -48,6 +42,7 @@ function TextTimerPage() {
         setFormattedTime(newFormattedTime);
     }, [time]);
 
+    //Uppdaterar grafiken varje sekund
     useEffect(() => {
         let timerInterval;
 
@@ -63,24 +58,13 @@ function TextTimerPage() {
     return (
         <section className="analogTimerPage-wrapper">
             <Nav />
-            {/* Gömmer timerdisplayen tills timern startas */}
             {isRunning && (
                 <section className="textTimerDisplay">
                     <h5>{formattedTime}</h5>
                 </section>
             )}
             <PauseView />
-            <Link
-                aria-label='Navigate to set timer'
-                to="/TimerPage"
-                onClick={abortTimer}>
-                <motion.button
-                    className='abort-button'
-                    whileHover={{ backgroundColor: '#22222240' }}
-                    whileTap={{ scale: 0.95 }}
-                >ABORT TIMER
-                </motion.button>
-            </Link>
+            <AbortButton />
         </section>
     )
 }

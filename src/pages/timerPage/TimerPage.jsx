@@ -36,12 +36,14 @@ function TimerPage() {
         }
     };
 
+    // Aktivera/inaktivera intervall
     const handleIntervalChange = (e) => {
-        setIntervalsEnabled(e.target.checked); // Aktivera/inaktivera intervall
+        setIntervalsEnabled(e.target.checked);
     };
 
+    // Aktivera/inaktivera break
     const handleBreakChange = (e) => {
-        setBreakEnabled(e.target.checked); // Aktivera/inaktivera break
+        setBreakEnabled(e.target.checked);
     };
 
     return (
@@ -92,7 +94,6 @@ function TimerPage() {
                         onClick={startTimer}
                         whileHover={{ backgroundColor: '#22222240' }}
                         whileTap={{ scale: 0.95 }}
-                    // transition={{ duration: 0.2 }}
                     >
                         START TIMER
                     </motion.button>

@@ -47,7 +47,6 @@ function AlarmViewPage() {
                     className='newTimer-button'
                     whileHover={{ backgroundColor: '#ffffff99' }}
                     whileTap={{ scale: 0.95 }}
-                // transition={{ duration: 0.2 }}
                 >
                     SET NEW TIMER
                 </motion.button>

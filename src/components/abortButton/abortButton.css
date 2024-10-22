@@ -1,0 +1,11 @@
+.abort-button {
+    font-family: "PT Sans", sans-serif;
+    color: rgba(34, 34, 34, 0.6);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    padding: 0.7rem;
+    border: 1px solid rgba(34, 34, 34, 0.6);
+    border-radius: 5px;
+    cursor: pointer;
+}
