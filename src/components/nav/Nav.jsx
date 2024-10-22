@@ -1,6 +1,7 @@
 import NavIcon from '../../assets/navicon(1).png'
 import NavIconWhite from '../../assets/navicon(2).png'
 import './nav.css'
+import timerStore from '../../../timerStore'
 import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,6 +9,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 function Nav() {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const location = useLocation();
+    const intervalsEnabled = timerStore((state) => state.intervalsEnabled);
+    const breakEnabled = timerStore((state) => state.breakEnabled)
 
     const isActive = (path) => {
         return location.pathname === path ? 'nav-item-active' : '';
@@ -24,7 +27,11 @@ function Nav() {
                 onClick={openNav} >
                 <img src={isNavOpen ? NavIconWhite : NavIcon} alt="navicon" />
             </button>
-
+            {(intervalsEnabled || breakEnabled) && (
+                <div className="intervals-text">
+                    <h2>Intervals</h2>
+                </div>
+            )}
             <AnimatePresence>
                 {isNavOpen && (
                     <motion.nav

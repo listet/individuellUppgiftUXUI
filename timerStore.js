@@ -74,7 +74,7 @@ const timerStore = create((set, get) => ({
                 const navigate = get().navigate;
                 if (navigate) {
                     if (!get().breakEnabled && !get().intervalsEnabled) {
-                        // await navigate('/AlarmViewPage');
+                        await navigate('/AlarmViewPage');
                     }
 
                     if (get().breakEnabled) {
@@ -87,7 +87,7 @@ const timerStore = create((set, get) => ({
                             console.log('Återgår till timern.');
                             set({ time: get().initialTime / 60 });
                             await get().startTimer();
-                        }, 3000); // Kort paus mellan
+                        }, 2000); // Kort paus mellan intervallerna
                     }
                 }
             });

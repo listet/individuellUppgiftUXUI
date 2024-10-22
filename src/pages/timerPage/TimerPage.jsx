@@ -38,12 +38,20 @@ function TimerPage() {
 
     // Aktivera/inaktivera intervall
     const handleIntervalChange = (e) => {
-        setIntervalsEnabled(e.target.checked);
+        const isChecked = e.target.checked;
+        setIntervalsEnabled(isChecked);
+        if (isChecked) {
+            setBreakEnabled(false);
+        }
     };
 
     // Aktivera/inaktivera break
     const handleBreakChange = (e) => {
-        setBreakEnabled(e.target.checked);
+        const isChecked = e.target.checked;
+        setBreakEnabled(isChecked);
+        if (isChecked) {
+            setIntervalsEnabled(false);
+        }
     };
 
     return (

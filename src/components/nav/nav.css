@@ -7,6 +7,12 @@
     z-index: 100;
 }
 
+.intervals-text {
+    font-family: "PT Sans", sans-serif;
+    position: absolute;
+    top: 1.2rem;
+}
+
 .nav-menu {
     position: fixed;
     top: 0;
