@@ -29,7 +29,7 @@ function Nav() {
             </button>
             {(intervalsEnabled || breakEnabled) && (
                 <div className="intervals-text">
-                    <h2>Intervals</h2>
+                    <h2>Interval</h2>
                 </div>
             )}
             <AnimatePresence>

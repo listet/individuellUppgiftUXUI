@@ -27,18 +27,17 @@ function AnalogTimerPage() {
     }, [totalSeconds, isRunning, secondDegrees, minuteDegrees, time]);
 
     //Uppdaterar grafiken varje sekund
-    useEffect(() => {
-        let timerInterval;
+    // useEffect(() => {
+    //     let timerInterval;
 
-        if (isRunning) {
-            timerInterval = setInterval(() => {
-                timerStore.getState().setTime(time - 1);
-            }, 1000);
-        }
+    //     if (isRunning) {
+    //         timerInterval = setInterval(() => {
+    //             timerStore.getState().setTime(time - 1);
+    //         }, 1000);
+    //     }
 
-        return () => clearInterval(timerInterval);
-    }, [isRunning, time]);
-
+    //     return () => clearInterval(timerInterval);
+    // }, [isRunning, time]);
 
     return (
         <section className="analogTimerPage-wrapper">
@@ -51,7 +50,7 @@ function AnalogTimerPage() {
                             style={{ rotate: secondDegrees }}
                             transition={{
                                 ease: 'linear',
-                                duration: 1,
+                                duration: 0.016,
                                 repeat: Infinity,
                             }}
                         />

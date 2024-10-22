@@ -42,19 +42,6 @@ function TextTimerPage() {
         setFormattedTime(newFormattedTime);
     }, [time]);
 
-    //Uppdaterar grafiken varje sekund
-    useEffect(() => {
-        let timerInterval;
-
-        if (isRunning) {
-            timerInterval = setInterval(() => {
-                timerStore.getState().setTime(time - 1);
-            }, 1000);
-        }
-
-        return () => clearInterval(timerInterval);
-    }, [isRunning, time]);
-
     return (
         <section className="analogTimerPage-wrapper">
             <Nav />

@@ -19,7 +19,7 @@ function TimerPage() {
     const breakEnabled = timerStore((state) => state.breakEnabled);
     const setBreakEnabled = timerStore((state) => state.setBreakEnabled);
 
-
+    // useEffect för att uppdatera navigationsfunktionen i Zustand store när komponenten laddas
     useEffect(() => {
         setNavigate(navigate);
     }, [navigate, setNavigate]);
