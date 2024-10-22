@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './digitalTimerPage.css'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react';
+import PauseView from '../../components/pauseView/PauseView';
 
 function DigitalTimerPage() {
     const time = timerStore((state) => state.time);
@@ -35,6 +36,7 @@ function DigitalTimerPage() {
                     <h2>{Math.floor(time)}:{Math.floor((time % 1) * 60).toString().padStart(2, '0')}</h2>
                 </section>
             )}
+            <PauseView />
             <Link
                 aria-label='Navigate to set timer'
                 to="/TimerPage"

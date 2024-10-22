@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './textTimerPage.css'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react';
+import PauseView from '../../components/pauseView/PauseView';
 
 function TextTimerPage() {
     const time = timerStore((state) => state.time);
@@ -68,6 +69,7 @@ function TextTimerPage() {
                     <h5>{formattedTime}</h5>
                 </section>
             )}
+            <PauseView />
             <Link
                 aria-label='Navigate to set timer'
                 to="/TimerPage"

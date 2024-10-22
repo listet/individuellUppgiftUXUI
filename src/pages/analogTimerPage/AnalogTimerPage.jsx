@@ -4,7 +4,7 @@ import timerStore from "../../../timerStore";
 import { Link } from "react-router-dom";
 import { motion, useMotionValue } from 'framer-motion';
 import { useEffect } from "react";
-// useTime och useTransform går att använda för det
+import PauseView from "../../components/pauseView/PauseView";
 
 function AnalogTimerPage() {
 
@@ -72,6 +72,7 @@ function AnalogTimerPage() {
                 )}
                 <figure className="centercircle"></figure>
             </section>
+            <PauseView />
             <Link
                 aria-label='Navigate to set timer'
                 to="/TimerPage"

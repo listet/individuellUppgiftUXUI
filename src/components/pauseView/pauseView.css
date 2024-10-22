@@ -1,0 +1,18 @@
+.pausView-header {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    color: red;
+    padding-bottom: 3px;
+}
+
+.pausView-text--bold {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+}
+
+.pausView-text {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+}
