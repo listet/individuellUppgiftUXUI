@@ -26,12 +26,12 @@
 }
 
 .centercircle {
-    height: 15px;
-    width: 15px;
+    height: 0.9rem;
+    width: 0.9rem;
     border-radius: 100%;
     border: 2px solid grey;
     position: absolute;
-    top: 48%;
+    top: 47%;
     left: 48%;
     z-index: 10;
     background-color: lightgrey;
@@ -55,6 +55,6 @@
 
 .minute {
     height: 5rem;
-    width: 0.5rem;
+    width: 0.4rem;
     background-color: black;
 }

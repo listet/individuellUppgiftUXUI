@@ -52,8 +52,9 @@ const timerStore = create((set, get) => ({
         return timeValues.minutes * 60 + timeValues.seconds;
     },
 
+
     // Starta timern
-    startTimer: () => {
+    startTimer: async () => {
         const timer = get().timerInstance;
         const selectedTime = get().time;
 
@@ -66,27 +67,26 @@ const timerStore = create((set, get) => ({
                 set({ time: timeValues.minutes + timeValues.seconds / 60 });
             });
 
-            timer.addEventListener('targetAchieved', () => {
+            timer.addEventListener('targetAchieved', async () => {
                 set({ isRunning: false });
                 console.log('Tiden är slut!');
 
                 const navigate = get().navigate;
                 if (navigate) {
                     if (!get().breakEnabled && !get().intervalsEnabled) {
-                        navigate('/AlarmViewPage');
+                        // await navigate('/AlarmViewPage');
                     }
 
                     if (get().breakEnabled) {
                         console.log('Paus på 5 minuter startar.');
-                        get().startBreakTimer();
+                        await get().startBreakTimer();
                     }
 
                     if (get().intervalsEnabled) {
-                        setTimeout(() => {
+                        setTimeout(async () => {
                             console.log('Återgår till timern.');
                             set({ time: get().initialTime / 60 });
-                            get().startTimer();
-                            navigate('/AnalogTimerPage');
+                            await get().startTimer();
                         }, 3000); // Kort paus mellan
                     }
                 }
@@ -94,7 +94,7 @@ const timerStore = create((set, get) => ({
         }
     },
 
-    startBreakTimer: () => {
+    startBreakTimer: async () => {
         const breakTimer = get().breakTimerInstance;
 
         set({ breakTime: 5 * 60, isBreakRunning: true }); // Återställ till 5 minuter
@@ -105,14 +105,14 @@ const timerStore = create((set, get) => ({
             set({ breakTime: timeValues.minutes * 60 + timeValues.seconds });
         });
 
-        breakTimer.addEventListener('targetAchieved', () => {
+        breakTimer.addEventListener('targetAchieved', async () => {
             console.log('Pausen är över, återgår till timern.');
             set({ isBreakRunning: false });
             set({ time: get().initialTime / 60 });
-            get().startTimer();
+            await get().startTimer();
             const navigate = get().navigate;
             if (navigate) {
-                navigate('/AnalogTimerPage');
+                await navigate('/AnalogTimerPage');
             }
         });
     },
