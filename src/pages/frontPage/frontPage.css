@@ -6,8 +6,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
     overflow: hidden;
+}
+
+.logo-wrapper {
+    text-decoration: none;
+    text-align: center;
+}
+
+.logo-wrapper:hover {
+    animation: pulse 2s infinite ease-in-out;
 }
 
 .frontPage-text {
@@ -17,4 +25,18 @@
     font-weight: 400;
     margin-top: 0.6rem;
     letter-spacing: 0.2rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
