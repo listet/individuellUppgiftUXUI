@@ -16,7 +16,7 @@ function AlarmViewPage() {
                     }}
                     transition={{
                         duration: 0.5,
-                        ease: "easeInOut",
+                        ease: "easeOut",
                         repeat: Infinity,
                         repeatDelay: 2
                     }}

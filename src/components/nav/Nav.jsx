@@ -18,7 +18,6 @@ function Nav() {
 
     const openNav = () => {
         setIsNavOpen(!isNavOpen);
-
     }
 
     return (

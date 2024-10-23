@@ -117,8 +117,13 @@ const timerStore = create((set, get) => ({
     startBreakTimer: async () => {
         const breakTimer = get().breakTimerInstance;
 
+        breakTimer.stop();
+
         set({ breakTime: 5 * 60, isBreakRunning: true }); // Återställ till 5 minuter
         breakTimer.start({ countdown: true, startValues: { minutes: 5 } });
+
+        breakTimer.removeEventListener('secondsUpdated');
+        breakTimer.removeEventListener('targetAchieved');
 
         // Uppdatera paus-tiden 
         breakTimer.addEventListener('secondsUpdated', () => {
