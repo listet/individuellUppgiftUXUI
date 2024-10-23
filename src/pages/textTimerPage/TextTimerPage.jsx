@@ -10,6 +10,7 @@ function TextTimerPage() {
     const isRunning = timerStore((state) => state.isRunning);
     const [formattedTime, setFormattedTime] = useState('');
 
+    //Gör nummer till text
     const numberToText = (number) => {
         const numbersInSwedish = [
             'NOLL', 'EN', 'TVÅ', 'TRE', 'FYRA', 'FEM', 'SEX',
@@ -31,12 +32,14 @@ function TextTimerPage() {
         return numbersInSwedish[number] || `${number}`;
     };
 
+    //Formaterar tiden till text
     const formatTime = (timeInSeconds) => {
         const minutes = Math.floor(timeInSeconds);
         const seconds = Math.round((timeInSeconds % 1) * 60); // Runda sekunder
         return `${numberToText(minutes)} MINUTER OCH ${numberToText(seconds)} SEKUNDER KVAR`;
     };
 
+    //Hook som körs när time ändras, anropar formatTime
     useEffect(() => {
         const newFormattedTime = formatTime(time);
         setFormattedTime(newFormattedTime);

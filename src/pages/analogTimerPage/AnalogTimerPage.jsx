@@ -8,14 +8,13 @@ import AbortButton from "../../components/abortButton/AbortButton";
 
 function AnalogTimerPage() {
 
-    const time = timerStore((state) => state.time);
     const totalSeconds = timerStore((state) => state.getTotalTimeInSeconds());
     const isRunning = timerStore((state) => state.isRunning);
     const initialTime = timerStore((state) => state.initialTime);
-    const secondDegrees = useMotionValue(0); // Vad gör motion value?
+    const secondDegrees = useMotionValue(0);
     const minuteDegrees = useMotionValue(0);
 
-    //Räknar ut och visar visarna om den kör
+    //Räknar ut position för visarna om timern är igång
     useEffect(() => {
         if (isRunning) {
             const remainingSeconds = totalSeconds % 60;
@@ -24,20 +23,7 @@ function AnalogTimerPage() {
             secondDegrees.set(360 - (remainingSeconds / 60) * 360);
             minuteDegrees.set(360 - (totalElapsedSeconds / initialTime) * 360);
         }
-    }, [totalSeconds, isRunning, secondDegrees, minuteDegrees, time]);
-
-    //Uppdaterar grafiken varje sekund
-    // useEffect(() => {
-    //     let timerInterval;
-
-    //     if (isRunning) {
-    //         timerInterval = setInterval(() => {
-    //             timerStore.getState().setTime(time - 1);
-    //         }, 1000);
-    //     }
-
-    //     return () => clearInterval(timerInterval);
-    // }, [isRunning, time]);
+    }, [totalSeconds, isRunning, secondDegrees, minuteDegrees]);
 
     return (
         <section className="analogTimerPage-wrapper">

@@ -19,7 +19,11 @@ function AbortButton() {
             <motion.button
                 className='abort-button'
                 whileHover={{ backgroundColor: '#22222240' }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{
+                    scale: 0.95,
+                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.4)',
+                    transition: { duration: 0.05 }
+                }}
             >ABORT TIMER
             </motion.button>
         </Link>

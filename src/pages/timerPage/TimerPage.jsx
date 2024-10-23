@@ -3,7 +3,7 @@ import decrement from '../../assets/decrement.png'
 import increment from '../../assets/increment.png'
 import Nav from '../../components/nav/Nav'
 import timerStore from '../../../timerStore'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 
@@ -94,18 +94,21 @@ function TimerPage() {
                     />
                     <p className='inline-text'>5 min break / interval</p>
                 </article>
-                <Link
-                    aria-label='Navigate to countdown'
-                    to="/AnalogTimerPage">
-                    <motion.button
-                        className='startTimer-button'
-                        onClick={startTimer}
-                        whileHover={{ backgroundColor: '#22222240' }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        START TIMER
-                    </motion.button>
-                </Link>
+                <motion.button
+                    className='startTimer-button'
+                    onClick={() => {
+                        startTimer();
+                        navigate('/AnalogTimerPage');
+                    }}
+                    whileHover={{ backgroundColor: '#22222240' }}
+                    whileTap={{
+                        scale: 0.95,
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.4)',
+                        transition: { duration: 0.05 }
+                    }}
+                >
+                    START TIMER
+                </motion.button>
             </section>
         </section>
     )

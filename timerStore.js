@@ -20,7 +20,7 @@ const timerStore = create((set, get) => ({
         set({ time: newTime });
     },
 
-    // Funktion för att sätta ny initial tid (i sekunder) för att beräkna visar-position på analog klocka
+    // Funktion för att sätta ny initial tid (i sekunder för att beräkna visar-position på analog klocka)
     setInitialTime: (newInitialTime) => {
         set({ initialTime: newInitialTime * 60 });
     },
@@ -73,6 +73,10 @@ const timerStore = create((set, get) => ({
             set({ initialTime: selectedTime * 60 });
             timer.start({ countdown: true, startValues: { minutes: Math.floor(selectedTime) } });
 
+            // Ta bort tidigare lyssnare för att förhindra duplicering
+            timer.removeEventListener('secondsUpdated');
+            timer.removeEventListener('targetAchieved');
+
             // Uppdatera timer-tid varje sekund
             timer.addEventListener('secondsUpdated', () => {
                 const timeValues = timer.getTimeValues();
@@ -116,7 +120,7 @@ const timerStore = create((set, get) => ({
         set({ breakTime: 5 * 60, isBreakRunning: true }); // Återställ till 5 minuter
         breakTimer.start({ countdown: true, startValues: { minutes: 5 } });
 
-        // Uppdatera paus-tiden varje sekund
+        // Uppdatera paus-tiden 
         breakTimer.addEventListener('secondsUpdated', () => {
             const timeValues = breakTimer.getTimeValues();
             set({ breakTime: timeValues.minutes * 60 + timeValues.seconds });
@@ -128,10 +132,6 @@ const timerStore = create((set, get) => ({
             set({ isBreakRunning: false });
             set({ time: get().initialTime / 60 });
             await get().startTimer();
-            // const navigate = get().navigate;
-            // if (navigate) {
-            //     await navigate('/AnalogTimerPage');
-            // }
         });
     },
 
